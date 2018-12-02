@@ -7,19 +7,19 @@ public class Engine {
         data = new ArrayList<EngineObject>();
     }
 
-    public Engine addEngineObject(EngineObject object){
+    public Engine addEngineObject(EngineObject object) {
         this.data.add(object);
         return this;
     }
 
-    public void load(ArrayList<EngineObject> list){
+    public void load(ArrayList<EngineObject> list) {
         this.data.addAll(list);
     }
 
-    public Engine find(Query query){
+    public Engine find(Query query) {
         Engine engine = new Engine();
-        for (EngineObject object : data){
-            if (object.equals(query)) engine.addEngineObject(object);
+        for (EngineObject object : data) {
+            if (query.matches(object)) engine.addEngineObject(object);
         }
         return engine;
     }
