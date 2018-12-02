@@ -1,42 +1,45 @@
 public class Main {
     public static void main(String[] args) {
-        Genre rock = new Genre("rock");
-        Genre pop = new Genre("pop");
-        Genre metal = new Genre("metal", rock);
-        Genre heavymetal = new Genre("heavymetal", metal);
 
-        EngineObject song1 = new Song();
-        EngineObject song2 = new Song();
-        EngineObject song3 = new Song();
-        EngineObject song4 = new Song();
 
-        ((Song) song1).setName("Enjoy the silence");
-        ((Song) song1).setGenre("rock");
-        ((Song) song1).setLength("3.04");
-        ((Song) song1).setSinger("Depeche Mode");
-        ((Song) song1).setReleaseDate("1999");
+        Genre.genres.addGenre("rock");
+        Genre.genres.addGenre("pop");
+        Genre.genres.addGenre("metal", "rock");
+        Genre.genres.addGenre("heavymetal", "metal");
 
-        ((Song) song2).setGenre("metal");
-        ((Song) song2).setSinger("Rammstein");
-        ((Song) song2).setName("Sonne");
-        ((Song) song2).setLength("3.45");
 
-        ((Song) song3).setName("Poker Face");
-        ((Song) song3).setGenre("pop");
-        ((Song) song3).setSinger("Lady Gaga");
-        ((Song) song3).setReleaseDate("2001");
+        Song song1 = new Song();
+        Song song2 = new Song();
+        Song song3 = new Song();
+        Song song4 = new Song();
 
-        ((Song) song4).setName("Decadance");
-        ((Song) song4).setSinger("Disturbed");
-        ((Song) song4).setReleaseDate("1999");
-        ((Song) song4).setGenre("heavymetal");
+        song1.setName("Enjoy the silence");
+        song1.setGenre("rock");
+        song1.setLength("3.04");
+        song1.setSinger("Depeche Mode");
+        song1.setReleaseDate("1999");
 
-        EngineObject album1 = new Album();
+        song2.setGenre("metal");
+        song2.setSinger("Rammstein");
+        song2.setName("Sonne");
+        song2.setLength("3.45");
 
-        ((Album) album1).setName("My lovely songs");
-        ((Album) album1).setGenre("rock");
-        ((Album) album1).addSong((Song)song1);
-        ((Album) album1).addSong((Song)song2);
+        song3.setName("Poker Face");
+        song3.setGenre("pop");
+        song3.setSinger("Lady Gaga");
+        song3.setReleaseDate("2001");
+
+        song4.setName("Decadance");
+        song4.setSinger("Disturbed");
+        song4.setReleaseDate("1999");
+        song4.setGenre("heavymetal");
+
+        Album album1 = new Album();
+
+        album1.setName("My lovely songs");
+        album1.setGenre("rock");
+        album1.addSong(song1);
+        album1.addSong(song2);
 
         Engine engine = new Engine();
         engine.addEngineObject(song1)
@@ -56,5 +59,6 @@ public class Main {
 
         query = new QueryBuilder().setProperty("genre", "pop").build();
         System.out.println(engine.find(query).toString());
+
     }
 }
